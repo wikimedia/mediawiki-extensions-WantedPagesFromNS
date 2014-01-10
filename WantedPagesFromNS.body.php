@@ -55,10 +55,9 @@ class WantedPagesFromNS {
   }
 
   function parse( &$input, &$parser ) {
-    global $wgContLang, $wgUser;
+    global $wgContLang;
 
     $this->sInput =& $input;
-    $sk = $wgUser->getSkin();
 
     $arg = $this->get( 'namespace', '', $parser );
     $iNamespace = $wgContLang->getNsIndex( $arg );
@@ -109,9 +108,9 @@ class WantedPagesFromNS {
       $wlh = SpecialPage::getTitleFor( 'Whatlinkshere' );
       $label = wfMessage('wpfromns-links', $row->value)->text();
 
-      $output .= '<li>' . $sk->link($title, $title->getText(), array(), array(), array('broken'))
+      $output .= '<li>' . Linker::link($title, $title->getText(), array(), array(), array('broken'))
                         . ' ('
-                             . $sk->link($wlh , $label, array(), array('target' => $title->getPrefixedText()))
+                             . Linker::link($wlh , $label, array(), array('target' => $title->getPrefixedText()))
                         . ')'
                         . "</li>\n";
     }
