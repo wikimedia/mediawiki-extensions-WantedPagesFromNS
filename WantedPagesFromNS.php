@@ -1,6 +1,6 @@
 <?php
 /**
- WantedPagesFromNS v1.0.0 beta -- Shows list of wanted page from specified namespace
+ WantedPagesFromNS -- Shows list of wanted page from specified namespace
 
  Author: Kazimierz Król
 
@@ -37,13 +37,12 @@ $wgExtensionCredits['parserhook'][] = array(
   'path' => __FILE__,
   'name' => 'WantedPagesFromNS',
   'author' => 'Kazimierz Król',
-  'version' => '1.0.0 beta',
-  'url' => '',
-  'description' => 'Wanted pages from a namespace',
+  'version' => '1.1.0 beta',
   'descriptionmsg' => 'wpfromns-desc',
 );
 
 $dir = dirname( __FILE__ ) . '/';
+$wgMessagesDirs['WantedPagesFromNS'] = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles['WantedPagesFromNS'] = $dir . 'WantedPagesFromNS.i18n.php';
 $wgAutoloadClasses['WantedPagesFromNS'] = $dir . 'WantedPagesFromNS.body.php';
 
