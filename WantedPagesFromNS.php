@@ -49,7 +49,11 @@ $wgAutoloadClasses['WantedPagesFromNS'] = $dir . 'WantedPagesFromNS.body.php';
 function efWantedPagesFromNSInit() {
   global $wgParser;
 
-  wfLoadExtensionMessages( 'WantedPagesFromNS' );
+	// Only call wfLoadExtensionMessages if it is defined, it was removed in 1.21
+	if( function_exists( 'wfLoadExtensionMessages' ) ) {
+		wfLoadExtensionMessages( 'WantedPagesFromNS' );
+	}
+
   $wgParser->setHook( 'wantedpagens', 'PageListRender' );
   //$wgParser->setFunctionHook( 'forumlink', array( new DPLForum(), 'link' ) );
   return TRUE;
