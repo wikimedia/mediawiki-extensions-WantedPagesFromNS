@@ -51,7 +51,7 @@ class WantedPagesFromNS {
     if ( $error && ( $this->get( 'suppresserrors' ) == 'true' ) )
       return '';
 
-    return htmlspecialchars( wfMsg( $type ) );
+    return wfMessage( $type )->escaped();
   }
 
   function parse( &$input, &$parser ) {
