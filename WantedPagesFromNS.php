@@ -5,7 +5,7 @@
  Author: Kazimierz Król
 
  Code based largely on DPL Forum extension by Ross McClure
- http://www.mediawiki.org/wiki/User:Algorithm
+ https://www.mediawiki.org/wiki/User:Algorithm
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
