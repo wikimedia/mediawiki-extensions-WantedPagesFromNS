@@ -81,7 +81,7 @@ class WantedPagesFromNS {
       $start = 0;
 
     // build the SQL query
-    $dbr = wfGetDB( DB_SLAVE );
+    $dbr = wfGetDB( DB_REPLICA );
     $pagelinks = $dbr->tableName( 'pagelinks' );
     $page      = $dbr->tableName( 'page' );
     //The SQL below is derived from includes/specials/SpecialWantedpages.php
