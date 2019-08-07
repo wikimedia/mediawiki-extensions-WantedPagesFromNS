@@ -26,11 +26,6 @@
  * @ingroup Extensions
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
- echo( "This file is an extension to the MediaWiki software and is not a valid access point" );
- die( 1 );
-}
-
 class WantedPagesFromNS {
 
   //gets value from the parameter list
