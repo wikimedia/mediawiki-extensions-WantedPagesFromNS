@@ -70,7 +70,7 @@ class WantedPagesFromNS {
     $count = 1;
     $start = 0;
     if ( !( $this->get( 'cache' ) == 'true' ) ) {
-      $parser->disableCache();
+      $parser->getOutput()->updateCacheExpiry( 0 );
     }
     if ( $start < 0 )
       $start = 0;
