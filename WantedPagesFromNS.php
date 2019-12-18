@@ -28,33 +28,31 @@
 */
 
 if ( !defined( 'MEDIAWIKI' ) ) {
-  echo( "This file is an extension to the MediaWiki software and is not a valid access point" );
-  die( 1 );
+	echo( "This file is an extension to the MediaWiki software and is not a valid access point" );
+	die( 1 );
 }
 
 $wgExtensionFunctions[] = 'efWantedPagesFromNSInit';
-$wgExtensionCredits['parserhook'][] = array(
-  'path' => __FILE__,
-  'name' => 'WantedPagesFromNS',
-  'author' => 'Kazimierz Król',
-  'version' => '1.1.0 beta',
-  'descriptionmsg' => 'wpfromns-desc',
-);
+$wgExtensionCredits['parserhook'][] = [
+	'path' => __FILE__,
+	'name' => 'WantedPagesFromNS',
+	'author' => 'Kazimierz Król',
+	'version' => '1.1.0 beta',
+	'descriptionmsg' => 'wpfromns-desc',
+];
 
-$dir = dirname( __FILE__ ) . '/';
 $wgMessagesDirs['WantedPagesFromNS'] = __DIR__ . '/i18n';
-$wgAutoloadClasses['WantedPagesFromNS'] = $dir . 'WantedPagesFromNS.body.php';
+$wgAutoloadClasses['WantedPagesFromNS'] = __DIR__ . '/WantedPagesFromNS.body.php';
 
 function efWantedPagesFromNSInit() {
-  global $wgParser;
+	global $wgParser;
 
-  $wgParser->setHook( 'wantedpagens', 'PageListRender' );
-  //$wgParser->setFunctionHook( 'forumlink', array( new DPLForum(), 'link' ) );
-  return TRUE;
+	$wgParser->setHook( 'wantedpagens', 'PageListRender' );
+	//$wgParser->setFunctionHook( 'forumlink', array( new DPLForum(), 'link' ) );
+	return true;
 }
 
 function PageListRender( $input, array $args, Parser $parser, PPFrame $frame ) {
-
-  $f = new WantedPagesFromNS();
-  return $f->parse( $input, $parser );
+	$f = new WantedPagesFromNS();
+	return $f->parse( $input, $parser );
 }
