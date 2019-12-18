@@ -23,24 +23,19 @@
  http://www.gnu.org/copyleft/gpl.html
 
  To install, add following to LocalSettings.php
-   include_once("$IP/extensions/WantedPagesFromNS/WantedPagesFromNS.php");
+ wfLoadExtension( 'WantedPagesFromNS' );
 
 */
-
-if ( !defined( 'MEDIAWIKI' ) ) {
-	echo( "This file is an extension to the MediaWiki software and is not a valid access point" );
-	die( 1 );
+if ( function_exists( 'wfLoadExtension' ) ) {
+	wfLoadExtension( 'WantedPagesFromNS' );
+	// Keep i18n globals so mergeMessageFileList.php doesn't break
+	$wgMessagesDirs['WantedPagesFromNS'] = __DIR__ . '/i18n';
+	wfWarn(
+		'Deprecated PHP entry point used for WantedPagesFromNS extension. ' .
+		'Please use wfLoadExtension instead, see ' .
+		'https://www.mediawiki.org/wiki/Extension_registration for more details.'
+	);
+	return;
+} else {
+	die( 'This version of the WantedPagesFromNS extension requires MediaWiki 1.32+' );
 }
-
-$wgExtensionCredits['parserhook'][] = [
-	'path' => __FILE__,
-	'name' => 'WantedPagesFromNS',
-	'author' => 'Kazimierz Król',
-	'version' => '1.1.0 beta',
-	'descriptionmsg' => 'wpfromns-desc',
-];
-
-$wgMessagesDirs['WantedPagesFromNS'] = __DIR__ . '/i18n';
-$wgAutoloadClasses['WantedPagesFromNS'] = __DIR__ . '/WantedPagesFromNS.body.php';
-
-$wgHooks['ParserFirstCallInit'][] = 'WantedPagesFromNS::onParserFirstCallInit';
