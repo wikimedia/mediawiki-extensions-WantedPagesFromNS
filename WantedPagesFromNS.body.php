@@ -28,6 +28,29 @@
 
 class WantedPagesFromNS {
 
+	/**
+	 * Register the <wantedpagens> tag with the parser.
+	 *
+	 * @param Parser $parser
+	 */
+	public static function onParserFirstCallInit( $parser ) {
+		$parser->setHook( 'wantedpagens', [ __CLASS__, 'renderPageList' ] );
+	}
+
+	/**
+	 * Callback for the above function, renders contents of the <wantedpagens> tag.
+	 *
+	 * @param string $input User-supplied input, if any
+	 * @param array $args User-supplied arguments to the tag, if any
+	 * @param Parser $parser
+	 * @param PPFrame $frame
+	 * @return string
+	 */
+	public static function renderPageList( $input, array $args, Parser $parser, PPFrame $frame ) {
+		$f = new WantedPagesFromNS();
+		return $f->parse( $input, $parser );
+	}
+
 	// Gets value from the parameter list
 	function get( $name, $value = null, $parser = null ) {
 		if ( preg_match( "/^\s*$name\s*=\s*(.*)/mi", $this->sInput, $matches ) ) {

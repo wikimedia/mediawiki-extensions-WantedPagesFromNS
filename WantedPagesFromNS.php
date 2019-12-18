@@ -32,7 +32,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 1 );
 }
 
-$wgExtensionFunctions[] = 'efWantedPagesFromNSInit';
 $wgExtensionCredits['parserhook'][] = [
 	'path' => __FILE__,
 	'name' => 'WantedPagesFromNS',
@@ -44,15 +43,4 @@ $wgExtensionCredits['parserhook'][] = [
 $wgMessagesDirs['WantedPagesFromNS'] = __DIR__ . '/i18n';
 $wgAutoloadClasses['WantedPagesFromNS'] = __DIR__ . '/WantedPagesFromNS.body.php';
 
-function efWantedPagesFromNSInit() {
-	global $wgParser;
-
-	$wgParser->setHook( 'wantedpagens', 'PageListRender' );
-	//$wgParser->setFunctionHook( 'forumlink', array( new DPLForum(), 'link' ) );
-	return true;
-}
-
-function PageListRender( $input, array $args, Parser $parser, PPFrame $frame ) {
-	$f = new WantedPagesFromNS();
-	return $f->parse( $input, $parser );
-}
+$wgHooks['ParserFirstCallInit'][] = 'WantedPagesFromNS::onParserFirstCallInit';
