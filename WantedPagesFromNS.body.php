@@ -75,12 +75,10 @@ class WantedPagesFromNS {
 	}
 
 	function parse( &$input, &$parser ) {
-		global $wgContLang;
-
 		$this->sInput =& $input;
 
 		$arg = $this->get( 'namespace', '', $parser );
-		$iNamespace = $wgContLang->getNsIndex( $arg );
+		$iNamespace = MediaWiki\MediaWikiServices::getInstance()->getContentLanguage()->getNsIndex( $arg );
 		if ( !$iNamespace ) {
 			if ( ( $arg ) || ( $arg === '0' ) ) {
 				$iNamespace = intval( $arg );
