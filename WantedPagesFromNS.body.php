@@ -101,29 +101,38 @@ class WantedPagesFromNS {
 			$start = 0;
 		}
 
-		// build the SQL query
 		$dbr = wfGetDB( DB_REPLICA );
-		$pagelinks = $dbr->tableName( 'pagelinks' );
-		$page = $dbr->tableName( 'page' );
-		//The SQL below is derived from includes/specials/SpecialWantedpages.php
-		$sql = "SELECT
-							pl_namespace AS namespace,
-							pl_title AS title,
-							COUNT(*) AS value
-						FROM $pagelinks
-						LEFT JOIN $page AS pg1
-						ON pl_namespace = pg1.page_namespace AND pl_title = pg1.page_title
-						LEFT JOIN $page AS pg2
-						ON pl_from = pg2.page_id
-						WHERE pg1.page_namespace IS NULL
-						AND pl_namespace = $iNamespace"
-						//AND pg2.page_namespace != " . NS_MEDIAWIKI . "
-						. " GROUP BY pl_namespace, pl_title";
+		// The SQL below is derived from includes/specials/SpecialWantedpages.php
+		$res = $dbr->select(
+			[
+				'pagelinks',
+				'pg1' => 'page',
+				'pg2' => 'page'
+			],
+			[
+				'namespace' => 'pl_namespace',
+				'title' => 'pl_title',
+				'value' => 'COUNT(*)'
+			],
+			[
+				'pg1.page_namespace IS NULL',
+				'pl_namespace' => $iNamespace
+				// 'pg2.page_namespace != ' . NS_MEDIAWIKI
+			],
+			__METHOD__,
+			[ 'GROUP BY' => [ 'pl_namespace', 'pl_title' ] ],
+			[
+				'pg1' => [
+					'LEFT JOIN', [
+						'pl_namespace = pg1.page_namespace',
+						'pl_title = pg1.page_title'
+					]
+				],
+				'pg2' => [ 'LEFT JOIN', 'pl_from = pg2.page_id' ]
+			]
+		);
 
-		// process the query
-		$res = $dbr->query($sql, __METHOD__ );
-
-		while ( $row = $dbr->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$title = Title::makeTitle( $row->namespace, $row->title );
 
 			$wlh = SpecialPage::getTitleFor( 'Whatlinkshere' );
