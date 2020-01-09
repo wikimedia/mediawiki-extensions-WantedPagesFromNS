@@ -6,5 +6,6 @@
 	},
 	"wpfromns-desc": "Páginas desejadas de um espaço nominal",
 	"wpfromns-links": "{{PLURAL:$1|1 link|$1 links}}",
+	"wpfromns-nons": "WantedPagesFromNS: não foi especificado nenhum espaço nominal!",
 	"wpfromns-nores": "Sem páginas para exibir."
 }
