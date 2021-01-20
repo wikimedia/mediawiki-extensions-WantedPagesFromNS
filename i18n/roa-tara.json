@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joetaras"
+		]
+	},
+	"wpfromns-desc": "Pàggene cercate da 'nu namespace",
+	"wpfromns-links": "{{PLURAL:$1|1 collegamende|$1 collegaminde}}",
+	"wpfromns-nons": "WantedPagesFromNS: nisciune namespace scacchiate!",
+	"wpfromns-nores": "Nisciuna pàgene da 'ndrucà."
+}
