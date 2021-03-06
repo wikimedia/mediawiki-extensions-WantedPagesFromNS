@@ -15,7 +15,7 @@
 		]
 	},
 	"AutoloadClasses": {
-		"WantedPagesFromNS": "WantedPagesFromNS.body.php"
+		"WantedPagesFromNS": "src/WantedPagesFromNS.php"
 	},
 	"Hooks": {
 		"ParserFirstCallInit": "WantedPagesFromNS::onParserFirstCallInit"

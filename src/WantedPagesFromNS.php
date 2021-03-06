@@ -1,27 +1,27 @@
 <?php
 /**
- WantedPagesFromNS v1.0.0 beta -- Shows list of wanted page from specified namespace
-
- Author: Kazimierz Król
-
- Code based largely on DPL Forum extension by Ross McClure
- https://www.mediawiki.org/wiki/User:Algorithm
-
- This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; either version 2 of the License, or
- (at your option) any later version.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License along
- with this program; if not, write to the Free Software Foundation, Inc.,
- 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- http://www.gnu.org/copyleft/gpl.html
-
+ * WantedPagesFromNS v1.0.0 beta -- Shows list of wanted page from specified namespace
+ *
+ * @author Kazimierz Król
+ *
+ * Code based largely on DPL Forum extension by Ross McClure
+ * https://www.mediawiki.org/wiki/User:Algorithm
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup Extensions
  */
@@ -40,8 +40,8 @@ class WantedPagesFromNS {
 	/**
 	 * Callback for the above function, renders contents of the <wantedpagens> tag.
 	 *
-	 * @param string $input User-supplied input, if any
-	 * @param array $args User-supplied arguments to the tag, if any
+	 * @param string|null $input User-supplied input, if any
+	 * @param string[] $args User-supplied arguments to the tag, if any
 	 * @param Parser $parser
 	 * @param PPFrame $frame
 	 * @return string
@@ -51,13 +51,20 @@ class WantedPagesFromNS {
 		return $f->parse( $input, $parser );
 	}
 
-	// Gets value from the parameter list
-	function get( $name, $value = null, $parser = null ) {
+	/**
+	 * Gets value from the parameter list.
+	 *
+	 * @param string $name
+	 * @param string|null $value
+	 * @param Parser|null $parser
+	 * @return string
+	 */
+	public function get( $name, $value = null, $parser = null ) {
 		if ( preg_match( "/^\s*$name\s*=\s*(.*)/mi", $this->sInput, $matches ) ) {
 			$arg = trim( $matches[1] );
 			if ( is_int( $value ) ) {
 				return intval( $arg );
-			} elseif ( is_null( $parser ) ) {
+			} elseif ( $parser === null ) {
 				return htmlspecialchars( $arg );
 			} else {
 				return $parser->replaceVariables( $arg );
@@ -66,7 +73,12 @@ class WantedPagesFromNS {
 		return $value;
 	}
 
-	function msg( $type, $error = null ) {
+	/**
+	 * @param string $type
+	 * @param int|null $error
+	 * @return string
+	 */
+	public function msg( $type, $error = null ) {
 		if ( $error && ( $this->get( 'suppresserrors' ) == 'true' ) ) {
 			return '';
 		}
@@ -74,7 +86,12 @@ class WantedPagesFromNS {
 		return wfMessage( $type )->escaped();
 	}
 
-	function parse( &$input, &$parser ) {
+	/**
+	 * @param string|null &$input
+	 * @param Parser &$parser
+	 * @return string HTML
+	 */
+	public function parse( &$input, &$parser ) {
 		$this->sInput =& $input;
 
 		$arg = $this->get( 'namespace', '', $parser );
@@ -83,7 +100,7 @@ class WantedPagesFromNS {
 			if ( ( $arg ) || ( $arg === '0' ) ) {
 				$iNamespace = intval( $arg );
 			} else {
-				$iNamespace = - 1;
+				$iNamespace = -1;
 			}
 		}
 		if ( $iNamespace < 0 ) {
@@ -139,7 +156,7 @@ class WantedPagesFromNS {
 			$label = wfMessage( 'wpfromns-links', $row->value )->text();
 
 			$output .= '<li>' . Linker::link( $title, $title->getText(), [], [], [ 'broken' ] ) .
-				' ('  . Linker::link( $wlh , $label, [], [ 'target' => $title->getPrefixedText() ] ) .
+				' (' . Linker::link( $wlh, $label, [], [ 'target' => $title->getPrefixedText() ] ) .
 				')' . "</li>\n";
 		}
 
@@ -147,7 +164,7 @@ class WantedPagesFromNS {
 			return '<ul>' . $output . "</ul>\n";
 		} else {
 			// no pages found
-			return wfMessage( 'wpfromns-nores' )->text();
+			return wfMessage( 'wpfromns-nores' )->escaped();
 		}
 	}
 }
