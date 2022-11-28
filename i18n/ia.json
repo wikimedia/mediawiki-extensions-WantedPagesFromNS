@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"wpfromns-desc": "Paginas desirate in un spatio de nomines",
+	"wpfromns-links": "$1 ligamine{{PLURAL:$1||s}}",
+	"wpfromns-nons": "WantedPagesFromNS: necun spatio de nomines specificate!",
+	"wpfromns-nores": "Necun pagina a monstrar."
+}
