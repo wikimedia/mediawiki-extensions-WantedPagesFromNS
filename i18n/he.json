@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"wpfromns-desc": "דפים מבוקשים ממרחב שם",
+	"wpfromns-links": "{{PLURAL:$1|קישור אחד|$1 קישורים}}",
+	"wpfromns-nons": "WantedPagesFromNS: לא צוין מרחב שמות!",
+	"wpfromns-nores": "אין דפים להצגה."
+}
