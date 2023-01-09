@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"wpfromns-desc": "Želene strani iz imenskega prostora",
+	"wpfromns-links": "{{PLURAL:$1|$1 povezava|$1 povezavi|$1 povezave|$1 povezav}}",
+	"wpfromns-nons": "WantedPagesFromNS: določen ni noben imenski prostor!",
+	"wpfromns-nores": "Ni strani za prikaz."
+}
