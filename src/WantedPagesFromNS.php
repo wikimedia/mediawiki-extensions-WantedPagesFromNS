@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * WantedPagesFromNS v1.0.0 beta -- Shows list of wanted page from specified namespace
  *
@@ -118,7 +121,7 @@ class WantedPagesFromNS {
 			$start = 0;
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 		// The SQL below is derived from includes/specials/SpecialWantedpages.php
 		$res = $dbr->select(
 			[
