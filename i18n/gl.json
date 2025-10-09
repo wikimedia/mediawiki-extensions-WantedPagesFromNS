@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"wpfromns-desc": "Páxinas requiridas dun espazo de nomes",
+	"wpfromns-links": "{{PLURAL:$1|1 ligazón|$1 ligazóns}}",
+	"wpfromns-nons": "WantedPagesFromNS: non se especificou ningún espazo de nomes!",
+	"wpfromns-nores": "Non hai páxinas para mostrar."
+}
