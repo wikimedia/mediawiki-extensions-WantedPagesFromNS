@@ -1,6 +1,8 @@
 <?php
 
+use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 
 /**
  * WantedPagesFromNS v1.0.0 beta -- Shows list of wanted page from specified namespace

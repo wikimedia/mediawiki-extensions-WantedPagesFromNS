@@ -7,7 +7,7 @@
 	"descriptionmsg": "wpfromns-desc",
 	"type": "parserhook",
 	"requires": {
-		"MediaWiki": ">= 1.32.0"
+		"MediaWiki": ">= 1.40.0"
 	},
 	"MessagesDirs": {
 		"WantedPagesFromNS": [
