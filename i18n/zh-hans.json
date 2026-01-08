@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Peterxy12"
+		]
+	},
+	"wpfromns-desc": "来自命名空间的所需页面",
+	"wpfromns-links": "{{PLURAL:$1|1个链接|$1个链接}}",
+	"wpfromns-nons": "WantedPagesFromNS：没有指定命名空间！",
+	"wpfromns-nores": "没有要显示的页面。"
+}
