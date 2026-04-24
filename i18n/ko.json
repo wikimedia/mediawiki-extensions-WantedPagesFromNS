@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tensama0415"
+		]
+	},
+	"wpfromns-desc": "이름공간에서 찾고자 하는 문서",
+	"wpfromns-links": "{{PLURAL:$1|1개 링크|$1개 링크}}",
+	"wpfromns-nons": "WantedPagesFromNS: 이름공간이 지정되지 않았습니다!",
+	"wpfromns-nores": "표시할 문서가 없습니다."
+}
