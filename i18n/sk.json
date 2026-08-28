@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"wpfromns-desc": "Žiadané stránky z menného priestoru",
+	"wpfromns-links": "{{PLURAL:$1|1 odkaz|$1 odkazy|$1 odkazov}}",
+	"wpfromns-nons": "WantedPagesFromNS: nebol zadaný žiadny menný priestor!",
+	"wpfromns-nores": "Nie sú k dispozícii žiadne stránky na zobrazenie."
+}
